@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <script src="js/vue.js"></script>    
+        <script>
+
+            var allTasks = [
+                {id: 1, description: 'Task 1'},
+                {id: 2, description: 'Task 2'},
+                {id: 3, description: 'Task 3'},
+                {id: 4, description: 'Task 4'},
+                {id: 5, description: 'Task 5'}
+            ];
+        </script>
+    </head>
+    <body>
+
+        <div id='myApp'>
+
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    
+                </tr>
+                <tr v-for="task in tasks">
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.description }}</td>                    
+                </tr>
+            </table>
+
+            <input type="text" id="newTask" v-model="newTask" /> <button id="addNewTask" @click="add()">Add Task</button>
+
+        </div>
+
+        <script>
+            new Vue({
+                el: '#myApp',
+                data: {
+                    tasks: allTasks,                    
+                    newTask: ''
+                },
+                methods: {
+                    add: function() {
+                        this.tasks.push({
+                            id: this.tasks.length + 1, 
+                            description: this.newTask                            
+                        });
+
+                        this.newTask = '';
+                    }
+                }
+            });
+        </script>
+        
+    </body>
+</html>
