@@ -16,23 +16,27 @@
 
         <div id='myApp'>
 
-            <p>Hello! You have {{ numberOfTasks }} task(s).</p>
+            <h1>Task List</h1>
+            <p>Hello {{ fullName }} ! You have {{ numberOfTasks }} task(s).</p>
 
             <table>
                 <tr>
                     <th>Id</th>
-                    <th>Description</th>
-                    <!--th>Computed</th-->
+                    <th>Description</th>                    
                 </tr>
                 <tr v-for="task in tasks" >
                     <td>{{ task.id }}</td>
-                    <td>{{ task.description }}</td>  
-                    <!--td>{{ task.humanReadable }}</td-->
+                    <td>{{ task.description }}</td>                      
                 </tr>
             </table>
-
+            
             <input type="text" id="newTask" v-model="newTask" /> <button id="addNewTask" @click="add()">Add Task</button>
 
+            <h1>Define your name</h1>
+            <p>Are you not Tiago? Please, type in your new name in the following format: [name] + [surname].</p>
+            <input type="text" id="fullName" v-model="fullName" /> <br>
+            firstName value is = {{ firstName }} <br>
+            lastName value is = {{ lastName }}
         </div>
 
         <script>
@@ -40,7 +44,9 @@
                 el: '#myApp',
                 data: {
                     tasks: allTasks,                    
-                    newTask: '',                        
+                    newTask: '',         
+                    firstName: "Tiago",
+                    lastName: "Lammers"
                 },
                 methods: {
                     add: function() {
@@ -55,6 +61,16 @@
                 computed: {
                     numberOfTasks: function () {
                         return this.tasks.length ;
+                    },
+                    fullName: {
+                        get: function() {
+                            return this.firstName + ' ' + this.lastName;
+                        },
+                        set: function(newName) {
+                            var fullName = newName.split(' ');
+                            this.firstName = fullName[0];
+                            this.lastName  = fullName[1];
+                        }
                     }
                 }
             });
