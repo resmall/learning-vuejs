@@ -1,6 +1,7 @@
 <html>
     <head>
-        <script src="js/vue.js"></script>    
+        <script src="js/vue.js"></script>   
+        <link rel="stylesheet" href="css/style.css" type="text/css"> 
         <script>
 
             var allTasks = [
@@ -14,7 +15,9 @@
     </head>
     <body>
 
-        <div id='myApp'>
+        <div id='myApp' v-bind:class="{'pretty-font': beautify}">
+            <h1>Beautify font</h1>
+            <button id="toggleBeautify" @click="toggleBeautify()">Toggle beautify font</button>
 
             <h1>Task List</h1>
             <p>Hello {{ fullName }} ! You have {{ numberOfTasks }} task(s).</p>
@@ -46,16 +49,20 @@
                     tasks: allTasks,                    
                     newTask: '',         
                     firstName: "Tiago",
-                    lastName: "Lammers"
+                    lastName: "Lammers",
+                    beautify: false,
                 },
                 methods: {
                     add: function() {
                         this.tasks.push({
                             id: this.tasks.length + 1, 
-                            description: this.newTask                            
+                            description: this.newTask
                         });
 
                         this.newTask = '';
+                    },
+                    toggleBeautify: function () {
+                        this.beautify = !this.beautify;
                     }
                 },
                 computed: {
