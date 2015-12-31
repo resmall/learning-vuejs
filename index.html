@@ -16,6 +16,8 @@
 
         <div id='myApp'>
 
+            <p>Hello! You have {{ numberOfTasks }} task(s).</p>
+
             <table>
                 <tr>
                     <th>Id</th>
@@ -38,7 +40,7 @@
                 el: '#myApp',
                 data: {
                     tasks: allTasks,                    
-                    newTask: ''         
+                    newTask: '',                        
                 },
                 methods: {
                     add: function() {
@@ -50,12 +52,11 @@
                         this.newTask = '';
                     }
                 },
-                // computed: {
-                //     humanReadable: function () {
-                //         alert(this.task);
-                //         return this.task.id ;
-                //     }
-                // }
+                computed: {
+                    numberOfTasks: function () {
+                        return this.tasks.length ;
+                    }
+                }
             });
         </script>
         
