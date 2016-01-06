@@ -18,6 +18,8 @@
         <div id='myApp' v-bind:class="{'pretty-font': beautify}">
             <h1>Beautify font</h1>
             <button id="toggleBeautify" @click="toggleBeautify()">Toggle beautify font</button>
+            <span v-if="beautify">Beautify is on</span>
+            <span v-else>Beautify is off</span>
 
             <h1>Task List</h1>
             <p>Hello {{ fullName }} ! You have {{ numberOfTasks }} task(s).</p>
