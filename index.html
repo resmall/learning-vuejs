@@ -41,7 +41,18 @@
             <p>Are you not Tiago? Please, type in your new name in the following format: [name] + [surname].</p>
             <input type="text" id="fullName" v-model="fullName" /> <br>
             firstName value is = {{ firstName }} <br>
-            lastName value is = {{ lastName }}
+            lastName value is = {{ lastName }} <br>
+
+            <template v-if="! disappearCommand">
+                <h1>We offer a motivation quote for free!</h1>
+                <p>Strive not to be a success, but rather to be of value. –Albert Einstein</p>
+                <p>We also offer a kitten image, for FREE!</p>
+                <img src="http://placekitten.com/g/200/250" />
+                <p>Have you already noticed we are trying to fill this space?</p>
+            </template>
+            <button id="disappear-button" @click="toggleDisappearCommand()">
+                {{ disappearCommand ? 'Ok, you my now appear' : 'I command you to disappear vile spammer!' }}
+            </button>
         </div>
 
         <script>
@@ -53,6 +64,7 @@
                     firstName: "Tiago",
                     lastName: "Lammers",
                     beautify: false,
+                    disappearCommand: false
                 },
                 methods: {
                     add: function() {
@@ -65,6 +77,9 @@
                     },
                     toggleBeautify: function () {
                         this.beautify = !this.beautify;
+                    },
+                    toggleDisappearCommand: function () {
+                        this.disappearCommand = ! this.disappearCommand;
                     }
                 },
                 computed: {
