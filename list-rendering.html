@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <script src="js/vue.js"></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script>
+            var allImages = [
+                {id: 1, path: 'https://placekitten.com/201/201'},
+                {id: 2, path: 'https://placekitten.com/202/210'},
+                {id: 3, path: 'https://placekitten.com/205/210'},
+                {id: 4, path: 'https://placekitten.com/210/215'}
+            ];
+        </script>
+
+        <style  media="screen">
+            .mono  {
+                font-family: monospace;
+            }
+
+            pre {
+                background-color: #ddd;
+                padding-top: 1.6em;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="app">
+            <h1>Iterating an array</h1>
+            <ul class="mono">
+                <li v-for="image in images">
+                    $index = {{ $index }}
+                    <ul>
+                        <li>Obj.id..: {{image.id}}</li>
+                        <li>Obj.path: {{image.path}}</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h1>Iterating an object</h1>
+            <p>
+                Object definition:
+            </p>
+            <pre>
+                object: {
+                    Name: "Tiago",
+                    Age: "Enough",
+                    Job: "Creator of Worlds"
+                }
+            </pre>
+            <ul class="mono">
+                <li v-for="attr in object">
+                    $index = {{ $index }}
+                    <ul>
+                        <li>$key..: {{ $key }}</li>
+                        <li>attr..: {{ attr }}</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h1>Iterating an object and aliasing key</h1>
+            <ul class="mono">
+                <li v-for="(key, val) in object">
+                    {{ key }} : {{ val }}
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            new Vue({
+                el: "#app",
+                data: {
+                    images: allImages,
+                    object: {
+                        Name: "Tiago",
+                        Age: "Enough",
+                        Job: "Creator of Worlds"
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
